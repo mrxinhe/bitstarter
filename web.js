@@ -1,3 +1,4 @@
+var fs = require('fs');
 var msg=fs.readFileSync('index.html');
 var m=msg.toString();
 
