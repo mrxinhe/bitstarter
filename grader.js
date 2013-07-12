@@ -63,14 +63,17 @@ var clone = function(fn) {
 
 if(require.main == module) {
     program
-        .option('-c, --checks <check_file>', 'Path to checks.json', parseString)
-        .option('-f, --file <html_file>', 'Path to index.html', parseString)
-        .option('-u, --url <html_url>', 'URL to index.html')
+        .option('-c, --checks <check_file>', 'Path to checks.json')
+        .option('-f, --file <html_file>', 'Path to index.html')
+        .option('-u, --url <string>', 'URL to index.html')
         .parse(process.argv);
     if (program.file) {
-    	var checkJson = checkHtmlFile(file, checks);
+    	var checkJson = checkHtmlFile(program.file, program.checks);
     	var outJson = JSON.stringify(checkJson, null, 4);
-    	console.log(outJson)
+    	console.log(outJson);
+    }
+    else if (program.url) {
+	console.log(program.url);
     };
 } else {
     exports.checkHtmlFile = checkHtmlFile;
